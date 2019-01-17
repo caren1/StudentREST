@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: javagda17-student-service-demo
+  cloud:
+    enabled: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8010/eureka
