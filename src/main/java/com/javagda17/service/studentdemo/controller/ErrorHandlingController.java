@@ -1,5 +1,6 @@
 package com.javagda17.service.studentdemo.controller;
 
+import com.javagda17.service.studentdemo.exceptions.JournalNotFound;
 import com.javagda17.service.studentdemo.exceptions.StudentNotFound;
 import com.javagda17.service.studentdemo.model.ErrorMessage;
 import org.springframework.http.HttpStatus;
@@ -24,5 +25,14 @@ public class ErrorHandlingController extends ResponseEntityExceptionHandler {
 
     // TODO: Stwórz exception handler dla przypadku kiedy nie można znaleźć identyfikatora Journala
     //  (podobny błąd w metodzie w JournalService)
+
+    @ExceptionHandler({JournalNotFound.class})
+    public ResponseEntity<ErrorMessage> handleDziennikNotFound() {
+        ErrorMessage message = new ErrorMessage();
+        message.setErrorMessage("JournalNotFound");
+        message.setReason("Given Journal ID does not exist.");
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
+    }
 
 }

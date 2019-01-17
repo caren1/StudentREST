@@ -8,5 +8,9 @@ import java.util.Optional;
 
 @Repository
 public interface JournalRepository extends JpaRepository<Journal, Long> {
+
     Optional<Journal> findByClassName(String className);
+
+    Optional<Journal> removeById(Long id);
+
 }
